@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Laboratorio_6_OOP_201902
 {
-    public class Player
+    public class Player : IAttackPoints
     {
         //Constantes
         private const int LIFE_POINTS = 2;
@@ -104,6 +104,13 @@ namespace Laboratorio_6_OOP_201902
         }
 
         //Metodos
+        public int[] GetAttackPoints()
+        {
+            int[] TotalAttack = board.GetAttackPoints();
+            int[] playerAttack = { TotalAttack[Id] };
+            return playerAttack;
+        }
+
         public void DrawCard(int cardId = 0)
         {
             Card tempCard = CreateTempCard(cardId);

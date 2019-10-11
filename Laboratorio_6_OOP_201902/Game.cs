@@ -78,9 +78,26 @@ namespace Laboratorio_6_OOP_201902
                 return this.boardGame;
             }
         }
-  
+
 
         //Metodos
+        public int GetRoundWinner()
+        {
+            int[] AttackPoints = boardGame.GetAttackPoints();
+            if (AttackPoints[0] > AttackPoints[1])
+            {
+                return 0;
+            }
+            else if (AttackPoints[0] < AttackPoints[1])
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public bool CheckIfEndGame()
         {
             if (players[0].LifePoints == 0 || players[1].LifePoints == 0)

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Laboratorio_6_OOP_201902
 {
-    public class Board
+    public class Board: IAttackPoints
     {
         //Constantes
         private const int DEFAULT_NUMBER_OF_PLAYERS = 2;
@@ -115,55 +115,80 @@ namespace Laboratorio_6_OOP_201902
             AddCard(captainCards[0][0], 0);
             AddCard(captainCards[1][0], 1);
         }
-        public int[] GetMeleeAttackPoints()
+        public int[] GetAttackPoints(EnumType line = EnumType.None)
         {
-            //Debe sumar todos los puntos de ataque de las cartas melee y retornar los valores por jugador.
             int[] totalAttack = new int[] { 0, 0 };
-            for (int i=0; i < 2; i++)
+            switch (line)
             {
-                if (playerCards[i].ContainsKey(EnumType.melee))
-                {
-                    foreach (CombatCard card in playerCards[i][EnumType.melee])
+                case EnumType.melee:
+                    for (int i = 0; i < 2; i++)
                     {
-                        totalAttack[i] += card.AttackPoints;
+                        if (playerCards[i].ContainsKey(EnumType.melee))
+                        {
+                            foreach (CombatCard card in playerCards[i][EnumType.melee])
+                            {
+                                totalAttack[i] += card.AttackPoints;
+                            }
+                        }
                     }
-                }
-            }
-            return totalAttack;
-            
-        }
-        public int[] GetRangeAttackPoints()
-        {
-            //Debe sumar todos los puntos de ataque de las cartas range y retornar los valores por jugador.
-            int[] totalAttack = new int[] { 0, 0 };
-            for (int i = 0; i < 2; i++)
-            {
-                if (playerCards[i].ContainsKey(EnumType.range))
-                {
-                    foreach (CombatCard card in playerCards[i][EnumType.range])
+                    return totalAttack;
+                case EnumType.range:
+                    for (int i = 0; i < 2; i++)
                     {
-                        totalAttack[i] += card.AttackPoints;
+                        if (playerCards[i].ContainsKey(EnumType.range))
+                        {
+                            foreach (CombatCard card in playerCards[i][EnumType.range])
+                            {
+                                totalAttack[i] += card.AttackPoints;
+                            }
+                        }
                     }
-                }
-            }
-            return totalAttack;
-        }
-        public int[] GetLongRangeAttackPoints()
-        {
-            //Debe sumar todos los puntos de ataque de las cartas longRange y retornar los valores por jugador.
-            int[] totalAttack = new int[] { 0, 0 };
-            for (int i = 0; i < 2; i++)
-            {
-                if (playerCards[i].ContainsKey(EnumType.longRange))
-                {
-                    foreach (CombatCard card in playerCards[i][EnumType.longRange])
+                    return totalAttack;
+                case EnumType.longRange:
+                    for (int i = 0; i < 2; i++)
                     {
-                        totalAttack[i] += card.AttackPoints;
+                        if (playerCards[i].ContainsKey(EnumType.longRange))
+                        {
+                            foreach (CombatCard card in playerCards[i][EnumType.longRange])
+                            {
+                                totalAttack[i] += card.AttackPoints;
+                            }
+                        }
                     }
-                }
+                    return totalAttack;
+                case EnumType.None:
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (playerCards[i].ContainsKey(EnumType.melee))
+                        {
+                            foreach (CombatCard card in playerCards[i][EnumType.melee])
+                            {
+                                totalAttack[i] += card.AttackPoints;
+                            }
+                        }
+                        if (playerCards[i].ContainsKey(EnumType.range))
+                        {
+                            foreach (CombatCard card in playerCards[i][EnumType.range])
+                            {
+                                totalAttack[i] += card.AttackPoints;
+                            }
+                        }
+                        if (playerCards[i].ContainsKey(EnumType.longRange))
+                        {
+                            foreach (CombatCard card in playerCards[i][EnumType.longRange])
+                            {
+                                totalAttack[i] += card.AttackPoints;
+                            }
+                        }
+                        
+                    }
+                    return totalAttack;
+                default:
+                    return totalAttack;
             }
-            return totalAttack;
         }
+
+        
 
     }
 }

@@ -99,6 +99,37 @@ namespace Laboratorio_6_OOP_201902.Static
             Console.Clear();
         }
 
+        public static ShowBoard(Board board, int player, int[] lifePoints, int[] attackPoints)
+        {
+            int Opponent = 0;
+            if (player == Opponent)
+            {
+                Opponent++;
+            }
+            bool[] buffed;
+            for (int i = 0; i < 2; i++)
+            {
+                if (board.PlayerCards[i].ContainsKey(EnumType.buffmelee))
+                {
+                    
+                }
+                else if (board.PlayerCards[i].ContainsKey(EnumType.buffrange))
+                {
+
+                }
+                else if (board.PlayerCards[i].ContainsKey(EnumType.bufflongRange)
+                {
+
+                }
+            }
+            Console.WriteLine("Board: ");
+            Console.WriteLine("Opponent - LifePoints: {0} - AttackPoints: {1}:", Opponent, lifePoints[Opponent], attackPoints[Opponent]);
+            Console.Write("(longRange) [{0}]: ", board.GetAttackPoints(EnumType.longRange)[Opponent]);
+            Console.WriteLine("(rangeange) [{0}]: ", board.GetAttackPoints(EnumType.range)[Opponent]);
+            Console.WriteLine("(melee) [{0}]: ", board.GetAttackPoints(EnumType.melee)[Opponent]);
+            Console.Write("Weather Cards:");
+        }
+
     }
     
 }
